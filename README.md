@@ -16,12 +16,12 @@ change it to "bind-address = 0.0.0.0 "
 
 restart mysql after changing the bind address
 
+# file permission
+chmod 644 .my.cnf
+
 # change the mysql credentials in .my.cnf
 usename=yourusername
 password=yourpassword
-
-# file permission
-chmod 644 .my.cnf
 
 # before starting the containers check the volumes mounted properly in the yml file
 # check the entered ports in yml file that are availabe and free
