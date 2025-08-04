@@ -28,7 +28,7 @@ password=yourpassword
 
 ## Start the containers
 
-docker compose -f mysql_monitor.yml up -d
+docker-compose -f mysql_monitor.yml up -d
 
 # check all the containers are running
  
