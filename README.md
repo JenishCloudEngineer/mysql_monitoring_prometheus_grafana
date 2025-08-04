@@ -16,6 +16,10 @@ change it to "bind-address = 0.0.0.0 "
 
 restart mysql after changing the bind address
 
+# change the mysql credentials in .my.cnf
+usename=yourusername
+password=yourpassword
+
 # file permission
 chmod 644 .my.cnf
 
