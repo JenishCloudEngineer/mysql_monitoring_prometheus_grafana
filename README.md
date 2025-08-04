@@ -1,4 +1,5 @@
 # MySQL Monitoring Stack
+mysql(local host) -> mysql exporter(on container) -> prometheus(on container) -> grafana(on container)
 
 # create the user and password credentials for mysql
 # change the username and password as you need
