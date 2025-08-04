@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  mysql-exporter:
+    image: prom/mysqld-exporter:latest
+    restart: unless-stopped
+    command:
+      - "--config.my-cnf=/cfg/.my.cnf"
+    volumes:
+      - "/home/jenish/mysql_monitor/.my.cnf:/cfg/.my.cnf:ro"
+    ports:
+      - "9104:9104"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml:ro"
+    ports:
+      - "9091:9090"
+    depends_on:
+      - mysql-exporter
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: "admin"
+      GF_SECURITY_ADMIN_PASSWORD: "admin"
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
